@@ -2,7 +2,7 @@ module "ec2-instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "3.3.0"
 
- name                          = var.ec2_name
+ name                           = var.ec2_name
   associate_public_ip_address   = var.public_ip_addres
   availability_zone             = var.az
   ami                    = var.ami_id
@@ -12,7 +12,9 @@ module "ec2-instance" {
   vpc_security_group_ids = [var.sg]
   subnet_id              = var.subnet
 
-  tags = {
-    Name = "${var.instance_name}-ec2-instance"
+ tags = {
+    Terraform   = var.tags["Terraform"]
+    Environment = var.tags["Environment"]
+    CreatedBy   = var.tags["CreatedBy"]
   }
 }

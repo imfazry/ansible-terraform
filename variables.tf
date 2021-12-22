@@ -17,11 +17,11 @@ variable "public_ip_addres" {
 }
 
 variable "ami_id" {
-  default = "ami-055d15d9cfddf7bd3"
+  default = "ami-05654370f5b5eb0b0" 
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  default = "t3.micro"
 }
 
 variable "my_key_name" {
@@ -33,13 +33,19 @@ variable "sg" {
 }
 
 variable "subnet" {
-  default = "subnet-efd75289"
+  default = "subnet-026ddf41eb0976154"
 }
 
-variable "instance_name" {
-  default = "mfazry"
-}
 
 variable "monitoring" {
     default = true
+}
+
+variable "tags" {
+    type = map(string)
+    default = {
+        "Terraform" = "true"
+        "Environment" = "Production"
+        "CreatedBy" = "muhamadfazry"
+    }
 }
