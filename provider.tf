@@ -10,3 +10,10 @@ terraform {
 provider "aws" {
   region = var.region
 }
+
+terraform {
+  backend "s3" {
+    bucket = "fazry-tf-state"
+    region = "ap-southeast-2"
+  }
+}
