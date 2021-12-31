@@ -1,0 +1,39 @@
+- name: update repo
+  hosts: AWS
+  remote_user: ubuntu
+  become: yes # give sudo permission
+  tasks:
+  - name: update
+    apt:
+     update_cache: yes
+
+  - name: install Nginx
+    apt:
+     name: Nginx 
+     state: present
+
+  - name: start nginx service / daemon
+    apt:
+     name: Nginx 
+     state: started 
+     enabled: yes
+
+  - name: create user nginx
+    user:
+      name: nginx
+
+  - name: stop firewall ubuntu
+    ufw:
+      state: disabled 
+  
+  - name: delete file
+    file:
+      state: absent
+      path: /var/www/html/*
+
+  - name: install landing page
+    git:
+      clone: yes
+      repo: https://github.com/sdcilsy/landing-page.git
+      dest: /var/www/html
+    
